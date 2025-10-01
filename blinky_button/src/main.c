@@ -20,33 +20,30 @@ int main(void)
         hardware debouncing, so we don't need to worry about
         debouncing the button input with software */
 
-        /* uncomment the section that you want to use, comment
-        out the other sections not used */
-
         /* ------------------------------------------------------ */
         /* use the button to toggle the led to constant on or off */
         /* ------------------------------------------------------ */
 
         /* while button is not pressed, do nothing */
-        //while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_SET) {}
+        while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_SET) {}
 
         /* if the button is ever pressed, the above loop exits, and 
         the led is toggled */
-        //GPIO_Toggle(GPIOA, PIN5);
+        GPIO_Toggle(GPIOA, PIN5);
 
         /* loop infinitely while the button remains pressed, 
         so we don't repeatedly toggle the led */
-        //while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET) {}
+        while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET) {}
 
         /* --------------------------------------------- */
         /* hold the button to stop the led from blinking */
         /* --------------------------------------------- */
 
-        /* while button is pressed, do nothing */
-        while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET) {}
+        /* while button is pressed, turn the led off and wait for the button to be released */
+        //while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET) { GPIO_Write(GPIOA, PIN5, GPIO_PIN_RESET); }
 
-        /* blink the led on 1 second intervals */
-        GPIO_Toggle(GPIOA, PIN5);
-        SYSTICK_Delay(1000);
+        /* blink the led on 0.5 second intervals when the button isnt pressed */
+        //GPIO_Toggle(GPIOA, PIN5);
+        //SYSTICK_Delay(500);
     }
 }

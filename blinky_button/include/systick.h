@@ -23,7 +23,7 @@ typedef struct
 will increment the System_Ticks global */
 typedef enum
 {
-    SYSTICK_uS = 1000000, // systick increments System_Ticks each microsecond
+    SYSTICK_US = 1000000, // systick increments System_Ticks each microsecond
     SYSTICK_MS = 1000,    // systick increments System_Ticks each millisecond
     SYSTICK_SEC = 1,      // systick increments System_Ticks each second
 } SYSTICK_Time_Interval;
