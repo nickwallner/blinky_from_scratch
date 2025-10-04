@@ -68,7 +68,10 @@ int main(void)
         /* --------------------------------------------- */
 
         /* while button is pressed, turn the led off and wait for the button to be released */
-        while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET) { GPIO_Write(GPIOA, PIN5, GPIO_PIN_RESET); }
+        while (GPIO_Read(GPIOC, PIN13) == GPIO_PIN_RESET)
+        {
+            GPIO_Write(GPIOA, PIN5, GPIO_PIN_RESET);
+        }
 
         /* blink the led on 0.5 second intervals when the button isnt pressed */
         GPIO_Toggle(GPIOA, PIN5);

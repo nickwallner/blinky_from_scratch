@@ -1,0 +1,33 @@
+#include "include/exti.h"
+
+/* exti line enable with trigger selection */
+void EXTI_Line_Enable(EXTI_Line line, EXTI_Trigger trigger)
+{
+    /* unmask selected exti line */
+    EXTI->IMR |= line;
+
+    /* set trigger */
+    if (trigger == EXTI_RISING_EDGE_TRIGGER)
+    {
+        EXTI->RTSR |= line;
+    }
+    else if (trigger == EXTI_FALLING_EDGE_TRIGGER)
+    {
+        EXTI->FTSR |= line;
+    }
+    else if (trigger == EXTI_RISING_FALLING_EDGE_TRIGGER)
+    {
+        EXTI->RTSR |= line; 
+        EXTI->FTSR |= line; 
+    }
+}
+
+/* exti interrupt handler */
+void EXTI_Handler(void)
+{
+    /* clear bit 13 in the pending interrupt register so our 
+    interrupt doesnt trigger infinitely */
+    EXTI->PR = BIT(13);
+
+    EXTI_Callback();
+}
