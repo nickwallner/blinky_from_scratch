@@ -1,11 +1,18 @@
 #include "include/systick.h"
 
-volatile uint32_t System_Ticks = 0;
+volatile uint32_t ticks = 0; // systick tick counter
 
 /* systick handler just increments system ticks */
 void SYSTICK_Handler(void)
 {
-    System_Ticks++;
+    /* prevent ticks variable from overflowing */
+    if (ticks == 0xffffffff)
+    {
+        ticks = 0;
+        return;
+    }
+
+    ticks++;
 }
 
 /* initialize the systick timer to the specified tickrate */
@@ -21,9 +28,13 @@ void SYSTICK_Init(uint32_t freq, SYSTICK_Time_Interval interval)
     SYSTICK->SYST_CSR = BIT(0) | BIT(1) | BIT(2); // enable the systick timer
 }
 
-/* delay for delay_period, length of delay depends on how systick was initialized */
+/* delay execution for delay_period,
+unit of time depends on how systick was initialized */
+/* this function is not perfect because there is a possibility that
+the until variable overflows if ticks or delay_period is too large,
+working on a solution to this */
 void SYSTICK_Delay(uint32_t delay_period)
 {
-    uint32_t until = System_Ticks + delay_period;
-    while (System_Ticks < until) {}
+    uint32_t until = ticks + delay_period;
+    while (ticks < until) {}
 }

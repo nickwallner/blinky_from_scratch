@@ -4,7 +4,7 @@
 /* cstdlib includes */
 #include <stdint.h>
 
-/* api includes */
+/* driver includes */
 #include "include/rcc.h"
 #include "include/gpio.h"
 

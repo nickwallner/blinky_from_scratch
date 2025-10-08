@@ -19,16 +19,14 @@ typedef struct
 } SYSTICK_Peripheral;
 
 /* systick timer intervals */
-/* this value determines the frequency that the systick timer
-will increment the System_Ticks global */
+/* this value determines the frequency at which the systick timer
+will generate systick exceptions */
 typedef enum
 {
-    SYSTICK_uS = 1000000, // systick increments System_Ticks each microsecond
-    SYSTICK_MS = 1000,    // systick increments System_Ticks each millisecond
-    SYSTICK_SEC = 1,      // systick increments System_Ticks each second
+    SYSTICK_US  = 1000000U, // systick increments System_Ticks each microsecond
+    SYSTICK_MS  = 1000U,    // systick increments System_Ticks each millisecond
+    SYSTICK_SEC = 1U,       // systick increments System_Ticks each second
 } SYSTICK_Time_Interval;
-
-extern volatile uint32_t System_Ticks; // system-wide tick counter
 
 /* handler for systick interrupts */
 void SYSTICK_Handler(void);

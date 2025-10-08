@@ -8,7 +8,7 @@
 
 /* STM32F446RE has 3 i/o ports: A, B, and C */
 /* each i/o port is controlled by a corresponding GPIO peripheral
-and each GPIO peripheral is 0x0400 large, which is 1024 bytes (1KiB) */
+and each GPIO peripheral is 0x0400 large (aka 1024 KiB)*/
 #define GPIOA_BASE_ADDR (GPIO_PERIPH_BASE_ADDR + 0x0000UL)
 #define GPIOB_BASE_ADDR (GPIO_PERIPH_BASE_ADDR + 0x0400UL)
 #define GPIOC_BASE_ADDR (GPIO_PERIPH_BASE_ADDR + 0x0800UL)
@@ -38,22 +38,44 @@ typedef struct
 gpio pin can be set too */
 typedef enum
 {
-    GPIO_MODE_INPUT,
-    GPIO_MODE_OUTPUT,
-    GPIO_MODE_AF,
-    GPIO_MODE_ANALOG
+    GPIO_MODE_INPUT  = 0U,
+    GPIO_MODE_OUTPUT = 1U,
+    GPIO_MODE_AF     = 2U,
+    GPIO_MODE_ANALOG = 3U
 } GPIO_Mode;
+
+/* generic io pins */
+/* each pin has the corresponding bit set, i.e. pin 4 -> bit 4 set */
+typedef enum
+{
+    PIN0  = 0x0001U, // 0000 0000 0000 0001
+    PIN1  = 0x0002U, // 0000 0000 0000 0010
+    PIN2  = 0x0004U, // 0000 0000 0000 0100
+    PIN3  = 0x0008U, // 0000 0000 0000 1000
+    PIN4  = 0x0010U, // 0000 0000 0001 0000
+    PIN5  = 0x0020U, // 0000 0000 0010 0000
+    PIN6  = 0x0040U, // 0000 0000 0100 0000
+    PIN7  = 0x0080U, // 0000 0000 1000 0000
+    PIN8  = 0x0100U, // 0000 0001 0000 0000
+    PIN9  = 0x0200U, // 0000 0010 0000 0000
+    PIN10 = 0x0400U, // 0000 0100 0000 0000
+    PIN11 = 0x0800U, // 0000 1000 0000 0000
+    PIN12 = 0x1000U, // 0001 0000 0000 0000
+    PIN13 = 0x2000U, // 0010 0000 0000 0000
+    PIN14 = 0x4000U, // 0100 0000 0000 0000
+    PIN15 = 0x8000U  // 1000 0000 0000 0000
+} GPIO_Pin;
 
 /* gpio pin state enum, a pin is either high (set) or low (reset) */
 typedef enum
 {
-    GPIO_PIN_RESET,
-    GPIO_PIN_SET
+    GPIO_PIN_RESET = 0U,
+    GPIO_PIN_SET   = 1U
 } GPIO_PinState;
 
 /* set the mode of a gpio pin */
-void GPIO_Set_Mode(GPIO_Peripheral *, uint16_t, GPIO_Mode);
+void GPIO_Set_Mode(GPIO_Peripheral *, GPIO_Pin, GPIO_Mode);
 /* write to a gpio pin that is in output mode */
-void GPIO_Write(GPIO_Peripheral *, uint16_t, GPIO_PinState);
+void GPIO_Write(GPIO_Peripheral *, GPIO_Pin, GPIO_PinState);
 
 #endif // GPIO_DRIVER_H_

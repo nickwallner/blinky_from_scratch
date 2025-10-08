@@ -1,5 +1,9 @@
 #include "include/main.h"
 
+/* this simple function executes count number of nop instructions
+as a way of implementing an execution delay */
+/* however, this method is not ideal because we don't
+have precise control over the exact duration of the delay */
 static inline void spin(volatile uint32_t count) {
     while (count--) asm("nop");
 }

@@ -2,7 +2,7 @@
 
 /* set the mode of a gpio pin */
 /* this function can only set the mode of ONE PIN AT A TIME!!! */
-void GPIO_Set_Mode(GPIO_Peripheral *gpiox, uint16_t pin, GPIO_Mode mode)
+void GPIO_Set_Mode(GPIO_Peripheral *gpiox, GPIO_Pin pin, GPIO_Mode mode)
 {
     uint16_t pinno = 0;
 
@@ -24,7 +24,7 @@ void GPIO_Set_Mode(GPIO_Peripheral *gpiox, uint16_t pin, GPIO_Mode mode)
 
 /* write a 1 (set) or a 0 (reset) to a gpio pin */
 /* this function assumes the pin is already placed in output mode */
-void GPIO_Write(GPIO_Peripheral *gpiox, uint16_t pin, GPIO_PinState pinstate)
+void GPIO_Write(GPIO_Peripheral *gpiox, GPIO_Pin pin, GPIO_PinState pinstate)
 {
     if (pinstate == GPIO_PIN_SET)
     {

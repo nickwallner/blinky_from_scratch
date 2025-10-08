@@ -1,6 +1,6 @@
 #include "include/main.h"
 
-/* reset handler, this is the very first function that is executed when the
+/* reset handler is the very first function that is executed when the
 mcu is is reset */
 __attribute__((naked, noreturn)) void Reset_Handler(void)
 {
@@ -16,7 +16,7 @@ __attribute__((naked, noreturn)) void Reset_Handler(void)
 
 extern void _estack(void); // initial stack pointer
 
-/* vector table, 16 cortex vectors + 91 ST vectors */
-__attribute__((section(".vectortable"))) void (* const vector_table[16 + 91])(void) = {
+/* vector table, 16 cortex vectors + 96 ST vectors */
+__attribute__((section(".vectortable"))) void (* const vector_table[16 + 96])(void) = {
     _estack, Reset_Handler
 };
