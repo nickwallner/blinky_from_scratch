@@ -41,3 +41,12 @@ Completely revamps the blinky button code to use an interrupt to toggle
 the button instead of constant polling.
 
 **Peripherals Used:** GPIO, RCC, SYSTICK, EXTI, NVIC, SYSCFG
+
+### Blinky UART
+
+Completely refactored codebase that now acts more as a minimal HAL. Uses the USART2
+peripheral alongside the ST-Link debugger/programmer to send/receive data. The program
+now sends "led toggled" every time the led is toggled and it will toggle the led if
+it recieves a 't'.
+
+**Peripherals Used:** GPIO, RCC, SYSTICK, EXTI, NVIC, SYSCFG, USART
