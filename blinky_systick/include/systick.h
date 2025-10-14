@@ -23,9 +23,9 @@ typedef struct
 will generate systick exceptions */
 typedef enum
 {
-    SYSTICK_US  = 1000000U, // systick increments System_Ticks each microsecond
-    SYSTICK_MS  = 1000U,    // systick increments System_Ticks each millisecond
-    SYSTICK_SEC = 1U,       // systick increments System_Ticks each second
+    SYSTICK_US  = 1000000U, // systick interrupt generated each microsecond
+    SYSTICK_MS  = 1000U,    // systick interrupt generated each millisecond
+    SYSTICK_SEC = 1U,       // systick interrupt generated each second
 } SYSTICK_Time_Interval;
 
 /* handler for systick interrupts */

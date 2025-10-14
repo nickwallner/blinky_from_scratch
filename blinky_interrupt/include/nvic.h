@@ -46,6 +46,7 @@ typedef enum
     SysTick_IRQ          = -1,
 
     /* --------- STM32F446RE interrupts --------- */
+    /* these are ordered according to the STM32F446x vector table */
     WWDG_IRQHandler               = 0,
     PVD_IRQHandler                = 1,
     TAMP_STAMP_IRQHandler         = 2,
